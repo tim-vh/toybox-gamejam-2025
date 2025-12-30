@@ -14,5 +14,7 @@ func _physics_process(delta: float) -> void:
 	if velocity.y > 1000:
 		velocity.y = 1000
 
-	print(velocity)
 	move_and_slide()
+
+func kill():
+	position = %StartingPoint.position
