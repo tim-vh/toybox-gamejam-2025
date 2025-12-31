@@ -1,24 +1,24 @@
-[gd_scene load_steps=7 format=3 uid="uid://exix86ohbqb6"]
+[gd_scene load_steps=8 format=3 uid="uid://exix86ohbqb6"]
 
 [ext_resource type="Texture2D" uid="uid://blri5f3hnmem6" path="res://Assets/tbj2_sprites_16x16_V6_transp_6-1.png" id="1_agh12"]
 [ext_resource type="Script" uid="uid://cy0ioxwvs4wdb" path="res://Scenes/spike.gd" id="1_nuopa"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n83sx"]
-atlas = ExtResource("1_agh12")
-region = Rect2(1440, 192, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nuopa"]
 atlas = ExtResource("1_agh12")
 region = Rect2(1344, 192, 96, 96)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_n83sx"]
+atlas = ExtResource("1_agh12")
+region = Rect2(1440, 192, 96, 96)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_gt2xr"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_n83sx")
+"texture": SubResource("AtlasTexture_nuopa")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_nuopa")
+"texture": SubResource("AtlasTexture_n83sx")
 }],
 "loop": true,
 "name": &"default",
@@ -26,19 +26,31 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hxkth"]
-size = Vector2(96, 96)
+size = Vector2(33, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuopa"]
+size = Vector2(67, 190)
 
 [node name="Spike" type="Node2D"]
 script = ExtResource("1_nuopa")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_gt2xr")
 frame_progress = 0.87329507
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="KillZone" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_hxkth")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="DetectorZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorZone"]
+position = Vector2(-1.5, -71)
+shape = SubResource("RectangleShape2D_nuopa")
+
+[connection signal="body_entered" from="KillZone" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="DetectorZone" to="." method="_on_detector_zone_body_entered"]
+[connection signal="body_exited" from="DetectorZone" to="." method="_on_detector_zone_body_exited"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvdl80qh2o4hl"]
+
+[ext_resource type="Texture2D" uid="uid://blri5f3hnmem6" path="res://Assets/tbj2_sprites_16x16_V6_transp_6-1.png" id="1_vyt86"]
+[ext_resource type="Script" uid="uid://dgvdxx6ulyqra" path="res://Scenes/red_bullet.gd" id="1_x0ypa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x0ypa"]
+atlas = ExtResource("1_vyt86")
+region = Rect2(1344, 480, 96, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ok5mu"]
+atlas = ExtResource("1_vyt86")
+region = Rect2(1440, 480, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jw8q3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x0ypa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ok5mu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 15.0
+}]
+
+[node name="RedBullet" type="Node2D"]
+script = ExtResource("1_x0ypa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_jw8q3")
+autoplay = "default"
+frame_progress = 0.77019995

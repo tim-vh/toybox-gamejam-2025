@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://bl0nfetdlohju"]
+
+[ext_resource type="Texture2D" uid="uid://blri5f3hnmem6" path="res://Assets/tbj2_sprites_16x16_V6_transp_6-1.png" id="1_fcprl"]
+[ext_resource type="Script" uid="uid://b8roi58tw52ki" path="res://Scenes/turret.gd" id="1_hskch"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hskch"]
+atlas = ExtResource("1_fcprl")
+region = Rect2(1248, 576, 96, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6spbj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hskch")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fcprl"]
+size = Vector2(418, 20)
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_hskch")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_6spbj")
+
+[node name="DetectorZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorZone"]
+position = Vector2(-199, 0)
+shape = SubResource("RectangleShape2D_fcprl")
+
+[node name="ReloadTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="Muzzle" type="Node2D" parent="."]
+position = Vector2(-3, 3)
+
+[connection signal="body_entered" from="DetectorZone" to="." method="_on_detector_zone_body_entered"]
+[connection signal="body_exited" from="DetectorZone" to="." method="_on_detector_zone_body_exited"]
+[connection signal="timeout" from="ReloadTimer" to="." method="_on_reload_timer_timeout"]
