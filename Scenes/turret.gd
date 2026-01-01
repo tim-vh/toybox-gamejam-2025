@@ -25,7 +25,9 @@ func shoot():
 		loaded = false
 		var red_bullet: Node2D = red_bullet_scene.instantiate()
 		red_bullet.position = $Muzzle.global_position
-		print(red_bullet.position)
 		%Bullets.add_child(red_bullet)
+		
+		$AudioStreamPlayer2D.play()
+		
 		$ReloadTimer.start()
 	

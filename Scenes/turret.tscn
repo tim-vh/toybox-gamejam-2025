@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bl0nfetdlohju"]
+[gd_scene load_steps=7 format=3 uid="uid://bl0nfetdlohju"]
 
 [ext_resource type="Texture2D" uid="uid://blri5f3hnmem6" path="res://Assets/tbj2_sprites_16x16_V6_transp_6-1.png" id="1_fcprl"]
 [ext_resource type="Script" uid="uid://b8roi58tw52ki" path="res://Scenes/turret.gd" id="1_hskch"]
+[ext_resource type="AudioStream" uid="uid://bguf8u65fsrg" path="res://Assets/laser_shoot.wav" id="3_6spbj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hskch"]
 atlas = ExtResource("1_fcprl")
@@ -40,6 +41,9 @@ one_shot = true
 
 [node name="Muzzle" type="Node2D" parent="."]
 position = Vector2(-3, 3)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_6spbj")
 
 [connection signal="body_entered" from="DetectorZone" to="." method="_on_detector_zone_body_entered"]
 [connection signal="body_exited" from="DetectorZone" to="." method="_on_detector_zone_body_exited"]
