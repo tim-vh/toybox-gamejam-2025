@@ -1,14 +1,15 @@
 extends Node2D
 
 @export var number: int = 5
+@export var enabled: bool = true
 
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_method("kill"):
+func _on_area_2d_body_entered(body: Node2D) -> void:	
+	if enabled and body.has_method("kill"):
 		body.kill()
 
 
 func _on_detector_zone_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):		
+	if enabled and body.is_in_group("player"):		
 		$AnimatedSprite2D.frame = 1
 
 

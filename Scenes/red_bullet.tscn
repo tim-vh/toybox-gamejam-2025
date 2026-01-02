@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dvdl80qh2o4hl"]
+[gd_scene load_steps=7 format=3 uid="uid://dvdl80qh2o4hl"]
 
 [ext_resource type="Texture2D" uid="uid://blri5f3hnmem6" path="res://Assets/tbj2_sprites_16x16_V6_transp_6-1.png" id="1_vyt86"]
 [ext_resource type="Script" uid="uid://dgvdxx6ulyqra" path="res://Scenes/red_bullet.gd" id="1_x0ypa"]
@@ -25,6 +25,9 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x0ypa"]
+radius = 9.055386
+
 [node name="RedBullet" type="Node2D"]
 script = ExtResource("1_x0ypa")
 
@@ -33,3 +36,10 @@ scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_jw8q3")
 autoplay = "default"
 frame_progress = 0.77019995
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_x0ypa")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -18,5 +18,4 @@ func flap():
 	$AudioStreamPlayer2D.play()	
 
 func kill():
-	pass
-	#position = %StartingPoint.position
+	position = %StartingPoint.position

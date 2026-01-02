@@ -34,6 +34,7 @@ sprite_frames = SubResource("SpriteFrames_6spbj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectorZone"]
 position = Vector2(-199, 0)
 shape = SubResource("RectangleShape2D_fcprl")
+debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 
 [node name="ReloadTimer" type="Timer" parent="."]
 wait_time = 0.5
